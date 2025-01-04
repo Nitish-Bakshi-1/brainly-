@@ -43,18 +43,42 @@ app.post("/api/v1/signin", async function (req, res) {
 });
 
 app.post("/api/v1/content", auth, async function (req, res) {
-  const { link, tags, userId, title } = req.body;
+  const { link, tags, title } = req.body;
   await Content.create({
     link,
     title,
-    userId,
-    tags,
+    //@ts-ignore
+    userId: req.userId,
+    tags: [],
+  });
+  res.json({
+    msg: "content created",
   });
 });
 
-app.get("/api/v1/content", function (req, res) {});
+app.get("/api/v1/content", auth, async function (req, res) {
+  // @ts-ignore
+  const userId = req.userId;
+  const content = await Content.find({
+    userId: userId,
+  }).populate("userId", "username");
+  res.json({
+    content: content,
+  });
+});
 
-app.delete("/api/v1/content", function (req, res) {});
+app.delete("/api/v1/content", async function (req, res) {
+  const contentId = req.body.contentId;
+
+  await Content.deleteMany({
+    contentId,
+    //@ts-ignore
+    userId: req.userId,
+  });
+  res.json({
+    message: "Deleted",
+  });
+});
 
 app.post("/api/v1/brain/share", function (req, res) {});
 
