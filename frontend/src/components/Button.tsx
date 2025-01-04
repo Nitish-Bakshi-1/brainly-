@@ -13,12 +13,12 @@ const variantStyles = {
   primary: "bg-purple-600 text-white",
   secondary: "bg-purple-300 text-purple-500",
 };
-const defaultStyles = "rounded-md ";
+const defaultStyles = "rounded-md flex gap-1";
 
 const sizeStyles = {
-  sm: "p-2",
-  md: "p-4",
-  lg: "p-6",
+  sm: "py-1 px-2",
+  md: "py-2 px-4",
+  lg: "py-4 px-6",
 };
 
 const Button = (props: ButtonProps) => {
@@ -28,7 +28,8 @@ const Button = (props: ButtonProps) => {
         sizeStyles[props.size]
       }`}
     >
-      {props.text}
+      {props.startIcon ? <div>{props.startIcon}</div> : null} {props.text}{" "}
+      {props.endIcon}
     </button>
   );
 };
