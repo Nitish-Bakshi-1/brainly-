@@ -1,6 +1,7 @@
 import express from "express";
-import { User } from "./db";
 import jwt from "jsonwebtoken";
+import { User, Content } from "./db";
+import auth from "./middleware";
 
 const app = express();
 app.use(express.json());
@@ -21,27 +22,35 @@ app.post("/api/v1/signup", async function (req, res) {
 });
 
 app.post("/api/v1/signin", async function (req, res) {
-  const { username, password } = req.body;
+  try {
+    const { username, password } = req.body;
 
-  const user = await User.findOne({
-    username,
-    password,
-  });
-  if (!user) {
-    res.json({
-      msg: "user doesnot exists",
+    const user = await User.findOne({
+      username,
+      password,
     });
+
+    if (user) {
+      const token = jwt.sign({ id: user._id }, "JWT_SECRET");
+      res.json({
+        token: token,
+      });
+    }
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ msg: "Internal server error" });
   }
-  const token = jwt.sign(
-    {
-      username: username,
-    },
-    "JWT_SECRET"
-  );
-  res.json(token);
 });
 
-app.post("/api/v1/content", function (req, res) {});
+app.post("/api/v1/content", auth, async function (req, res) {
+  const { link, tags, userId, title } = req.body;
+  await Content.create({
+    link,
+    title,
+    userId,
+    tags,
+  });
+});
 
 app.get("/api/v1/content", function (req, res) {});
 
