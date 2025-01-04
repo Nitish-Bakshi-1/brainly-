@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Button
-        startIcon={<PlusIcon />}
+        startIcon={<PlusIcon size={"lg"} />}
         size="md"
         variant="primary"
         text="Share Brain"
