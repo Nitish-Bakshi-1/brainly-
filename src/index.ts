@@ -1,5 +1,6 @@
 import express from "express";
 import { User } from "./db";
+import jwt from "jsonwebtoken";
 
 const app = express();
 app.use(express.json());
@@ -21,6 +22,7 @@ app.post("/api/v1/signup", async function (req, res) {
 
 app.post("/api/v1/signin", async function (req, res) {
   const { username, password } = req.body;
+
   const user = await User.findOne({
     username,
     password,
@@ -30,6 +32,13 @@ app.post("/api/v1/signin", async function (req, res) {
       msg: "user doesnot exists",
     });
   }
+  const token = jwt.sign(
+    {
+      username: username,
+    },
+    "JWT_SECRET"
+  );
+  res.json(token);
 });
 
 app.post("/api/v1/content", function (req, res) {});
