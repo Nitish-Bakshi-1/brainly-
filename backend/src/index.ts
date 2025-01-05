@@ -118,7 +118,7 @@ app.post("/api/v1/brain/share", auth, async function (req, res) {
   }
 });
 
-app.post("/api/v1/brain/:shareLink", async function (req, res) {
+app.get("/api/v1/brain/:shareLink", async function (req, res) {
   const hash = req.params.shareLink;
 
   const link = await Link.findOne({
@@ -137,7 +137,7 @@ app.post("/api/v1/brain/:shareLink", async function (req, res) {
   });
 
   const user = await User.findOne({
-    userId: link.userId,
+    _id: link.userId,
   });
 
   if (!user) {
