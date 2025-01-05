@@ -15,7 +15,7 @@ const Card = ({ title, link, type }: CardProps) => {
             <div className="text-gray-500 pr-2">
               <ShareIcon />
             </div>
-            Project ideas
+            {title}
           </div>
           <div className="flex items-center">
             <div className="text-gray-500 pr-2">
@@ -32,7 +32,7 @@ const Card = ({ title, link, type }: CardProps) => {
           {type === "youtube" && (
             <iframe
               className="w-full"
-              src="https://www.youtube.com/embed/W4pCpqTBtyY?si=yh0ISUR1664R0PVm"
+              src={link.replace("watch", "embed")}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
