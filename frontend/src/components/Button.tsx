@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 const variantStyles = {
   primary: "bg-purple-600 text-white",
-  secondary: "bg-purple-200 text-purple-500",
+  secondary: "bg-purple-200 text-purple-600",
 };
 const defaultStyles = "px-4 py-2 rounded-md font-light flex items-center gap-2";
 
