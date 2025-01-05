@@ -1,6 +1,12 @@
 import ShareIcon from "../icons/ShareIcon";
 
-const Card = () => {
+interface CardProps {
+  title: string;
+  link: string;
+  type: "twitter" | "youtube";
+}
+
+const Card = ({ title, link, type }: CardProps) => {
   return (
     <div>
       <div className=" p-4 bg-white rounded-md border  border-gray-200   max-w-72">
@@ -13,7 +19,9 @@ const Card = () => {
           </div>
           <div className="flex items-center">
             <div className="text-gray-500 pr-2">
-              <ShareIcon />
+              <a href={link} target="_blank">
+                <ShareIcon />
+              </a>
             </div>
             <div className="text-gray-500">
               <ShareIcon />
@@ -21,15 +29,23 @@ const Card = () => {
           </div>
         </div>
         <div className="pt-4">
-          <iframe
-            className="w-full"
-            src="https://www.youtube.com/embed/W4pCpqTBtyY?si=yh0ISUR1664R0PVm"
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
-          ></iframe>
+          {type === "youtube" && (
+            <iframe
+              className="w-full"
+              src="https://www.youtube.com/embed/W4pCpqTBtyY?si=yh0ISUR1664R0PVm"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          )}
+
+          {type === "twitter" && (
+            <blockquote className="twitter-tweet">
+              <a href={link}></a>
+            </blockquote>
+          )}
         </div>
       </div>
     </div>
