@@ -1,4 +1,5 @@
 import Button from "./components/Button";
+import Card from "./components/Card";
 import PlusIcon from "./icons/PlusIcon";
 import ShareIcon from "./icons/ShareIcon";
 
@@ -11,6 +12,7 @@ export default function App() {
         variant="secondary"
         startIcon={<ShareIcon />}
       />
+      <Card />
     </div>
   );
 }
