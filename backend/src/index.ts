@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import { User, Content } from "./db";
+import { User, Content, Link } from "./db";
 import auth from "./middleware";
 
 const app = express();
@@ -80,7 +80,15 @@ app.delete("/api/v1/content", async function (req, res) {
   });
 });
 
-app.post("/api/v1/brain/share", function (req, res) {});
+app.post("/api/v1/brain/share", auth, async function (req, res) {
+  const { share } = req.body;
+  if (share) {
+    await Link.create({
+      //@ts-ignore
+      userId: req.userId,
+    });
+  }
+});
 
 app.post("/api/v1/brain/:shareLink", function (req, res) {});
 
