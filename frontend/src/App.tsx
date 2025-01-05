@@ -1,5 +1,16 @@
+import Button from "./components/Button";
+import PlusIcon from "./icons/PlusIcon";
+import ShareIcon from "./icons/ShareIcon";
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline bg-red-600">Hello world!</h1>
+    <div>
+      <Button text="Add Content" variant="primary" startIcon={<PlusIcon />} />
+      <Button
+        text="Share Brain"
+        variant="secondary"
+        startIcon={<ShareIcon />}
+      />
+    </div>
   );
 }
