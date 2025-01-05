@@ -2,6 +2,7 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import { User, Content, Link } from "./db";
 import auth from "./middleware";
+import { random } from "./utils";
 
 const app = express();
 app.use(express.json());
@@ -86,11 +87,53 @@ app.post("/api/v1/brain/share", auth, async function (req, res) {
     await Link.create({
       //@ts-ignore
       userId: req.userId,
+      hash: random(10),
+    });
+  } else {
+    await Link.deleteOne({
+      //@ts-ignore
+      userId: req.userId,
     });
   }
+  res.json({
+    msg: "updated sharable link",
+  });
 });
 
-app.post("/api/v1/brain/:shareLink", function (req, res) {});
+app.post("/api/v1/brain/:shareLink", async function (req, res) {
+  const hash = req.params.shareLink;
+
+  const link = await Link.findOne({
+    hash,
+  });
+
+  if (!link) {
+    res.status(404).json({
+      msg: "sorry incorrect input",
+    });
+    return;
+  }
+
+  const content = await Content.find({
+    userId: link.userId,
+  });
+
+  const user = await User.findOne({
+    userId: link.userId,
+  });
+
+  if (!user) {
+    res.json({
+      msg: "user not found error should ideally not happen",
+    });
+    return;
+  }
+
+  res.json({
+    username: user.username,
+    content: content,
+  });
+});
 
 app.listen(3000, () => {
   console.log("server connected ");

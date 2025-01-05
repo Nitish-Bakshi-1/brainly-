@@ -2,7 +2,7 @@ import mongoose, { model, Schema } from "mongoose";
 
 mongoose
   .connect(
-    "mongodb+srv://admin:yX6EbhfQXdv9ueZk@cluster0.j7jusce.mongodb.net/second-brain"
+    "mongodb+srv://admin:in5fn07nj041RO3b@cluster0.j7jusce.mongodb.net/second-brain"
   )
   .then(() => {
     console.log("database connected");
