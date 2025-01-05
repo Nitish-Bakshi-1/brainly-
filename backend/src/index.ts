@@ -83,21 +83,39 @@ app.delete("/api/v1/content", async function (req, res) {
 
 app.post("/api/v1/brain/share", auth, async function (req, res) {
   const { share } = req.body;
+
   if (share) {
+    const existingLink = await Link.findOne({
+      //@ts-ignore
+      userId: req.userId,
+    });
+
+    if (existingLink) {
+      res.json({
+        hash: existingLink.hash,
+      });
+      return;
+    }
+
+    const hash = random(10);
     await Link.create({
       //@ts-ignore
       userId: req.userId,
-      hash: random(10),
+      hash: hash,
+    });
+    res.json({
+      msg: "updated sharable link",
+      link: `share/${hash}`,
     });
   } else {
     await Link.deleteOne({
       //@ts-ignore
       userId: req.userId,
     });
+    res.json({
+      msg: "REMOVED sharable link",
+    });
   }
-  res.json({
-    msg: "updated sharable link",
-  });
 });
 
 app.post("/api/v1/brain/:shareLink", async function (req, res) {
