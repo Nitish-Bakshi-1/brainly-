@@ -3,10 +3,12 @@ import Button from "../components/Button";
 import Input from "../components/Input";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
   const usernameRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
+  const navigate = useNavigate();
 
   async function signIn() {
     const username = usernameRef.current?.value;
@@ -17,6 +19,7 @@ const SignIn = () => {
     });
     const jwt = response.data.token;
     localStorage.setItem("token", jwt);
+    navigate("/dashboard");
   }
 
   return (
