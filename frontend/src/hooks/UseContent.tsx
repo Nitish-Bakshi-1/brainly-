@@ -8,11 +8,11 @@ const UseContent = () => {
     axios
       .get(`${BACKEND_URL}/api/v1/content`, {
         headers: {
-          Autorization: localStorage.getItem("token"),
+          Authorization: localStorage.getItem("token"),
         },
       })
       .then((response) => setContents(response.data.content));
-  });
+  }, []);
 
   return contents;
 };
