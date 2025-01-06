@@ -46,10 +46,11 @@ app.post("/api/v1/signin", async function (req, res) {
 });
 
 app.post("/api/v1/content", auth, async function (req, res) {
-  const { link, tags, title } = req.body;
+  const { link, tags, title, type } = req.body;
   await Content.create({
     link,
     title,
+    type,
     //@ts-ignore
     userId: req.userId,
     tags: [],
