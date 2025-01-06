@@ -1,8 +1,21 @@
+import { useRef, useState } from "react";
 import CrossIcon from "../icons/CrossIcon";
 import Button from "./Button";
 import Input from "./Input";
 
+enum ContentType {
+  Youtube = "youtube",
+  Twitter = "twitter",
+}
+
 const CreateContentModal = ({ open, onClose }) => {
+  const titleRef = useRef<HTMLInputElement>();
+  const linkRef = useRef<HTMLInputElement>();
+  const [type, setType] = useState(ContentType.Youtube);
+  async function addContent() {
+    const title = titleRef.current?.value;
+    const link = linkRef.current?.value;
+  }
   return (
     <div className="">
       {open && (
@@ -15,11 +28,11 @@ const CreateContentModal = ({ open, onClose }) => {
                 </div>
               </div>
               <div className="flex flex-col">
-                <Input placeHolder={"Title"} />
-                <Input placeHolder={"Link"} />
+                <Input reference={titleRef} placeHolder={"Title"} />
+                <Input reference={linkRef} placeHolder={"Link"} />
               </div>
               <div className="flex justify-center">
-                <Button text="Submit" variant="primary" />
+                <Button onClick={addContent} text="Submit" variant="primary" />
               </div>
             </span>
           </div>
