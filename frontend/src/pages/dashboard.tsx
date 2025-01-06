@@ -39,16 +39,10 @@ export default function Dashboard() {
           />
         </div>
         <div className="flex">
-          <Card
-            type="youtube"
-            title="u2b"
-            link="https://www.youtube.com/watch?v=Oo3qsxihXqY"
-          />
-          <Card
-            type="twitter"
-            title="twitter"
-            link="https://x.com/haneena07/status/1875923446502445257"
-          />
+          {JSON.stringify(contents)}
+          {contents.map(({ type, link, title }) => (
+            <Card type={type} title={title} link={link} />
+          ))}
         </div>
       </div>
     </div>

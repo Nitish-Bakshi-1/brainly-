@@ -6,7 +6,7 @@ const UseContent = () => {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/api/v1/contents`, {
+      .get(`${BACKEND_URL}/api/v1/content`, {
         headers: {
           Autorization: localStorage.getItem("token"),
         },
