@@ -17,7 +17,14 @@ export default function App() {
       />
 
       <div className="flex justify-end gap-4">
-        <Button text="Add Content" variant="primary" startIcon={<PlusIcon />} />
+        <Button
+          onClick={() => {
+            setModalOpen(!modalOpen);
+          }}
+          text="Add Content"
+          variant="primary"
+          startIcon={<PlusIcon />}
+        />
         <Button
           text="Share Brain"
           variant="secondary"
