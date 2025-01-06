@@ -31,6 +31,26 @@ const CreateContentModal = ({ open, onClose }) => {
                 <Input reference={titleRef} placeHolder={"Title"} />
                 <Input reference={linkRef} placeHolder={"Link"} />
               </div>
+              <div className=" flex justify-around items-center my-2">
+                <Button
+                  text="Youtube"
+                  variant={
+                    type === ContentType.Youtube ? "primary" : "secondary"
+                  }
+                  onClick={() => {
+                    setType(ContentType.Youtube);
+                  }}
+                />
+                <Button
+                  text="Twitter"
+                  variant={
+                    type === ContentType.Twitter ? "primary" : "secondary"
+                  }
+                  onClick={() => {
+                    setType(ContentType.Twitter);
+                  }}
+                />
+              </div>
               <div className="flex justify-center">
                 <Button onClick={addContent} text="Submit" variant="primary" />
               </div>
