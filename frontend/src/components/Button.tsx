@@ -5,6 +5,7 @@ interface ButtonProps {
   text: string;
   startIcon: ReactElement;
   onClick?: () => void;
+  fullWidth?: boolean;
 }
 const variantStyles = {
   primary: "bg-purple-600 text-white",
@@ -16,7 +17,9 @@ const Button = (props: ButtonProps) => {
   return (
     <button
       onClick={props.onClick}
-      className={`${variantStyles[props.variant]} ${defaultStyles}`}
+      className={`${variantStyles[props.variant]} ${defaultStyles} ${
+        props.fullWidth && "w-full justify-center font-bold "
+      }`}
     >
       {props.startIcon}
       {props.text}
