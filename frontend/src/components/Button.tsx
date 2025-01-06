@@ -4,7 +4,7 @@ interface ButtonProps {
   variant: "primary" | "secondary";
   text: string;
   startIcon: ReactElement;
-  onClick: () => void;
+  onClick?: () => void;
 }
 const variantStyles = {
   primary: "bg-purple-600 text-white",
