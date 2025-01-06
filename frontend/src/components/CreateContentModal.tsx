@@ -31,6 +31,9 @@ const CreateContentModal = ({ open, onClose }) => {
                 <Input reference={titleRef} placeHolder={"Title"} />
                 <Input reference={linkRef} placeHolder={"Link"} />
               </div>
+              <div>
+                <h1 className="text-xl: text-center text-gray-500">Type</h1>
+              </div>
               <div className=" flex justify-around items-center my-2">
                 <Button
                   text="Youtube"
@@ -51,7 +54,7 @@ const CreateContentModal = ({ open, onClose }) => {
                   }}
                 />
               </div>
-              <div className="flex justify-center">
+              <div className="flex justify-center mt-4">
                 <Button onClick={addContent} text="Submit" variant="primary" />
               </div>
             </span>
