@@ -1,17 +1,17 @@
 function Input({
   placeHolder,
-  ref,
+  reference,
 }: {
   placeHolder: string;
-  ref: any;
+  reference?: any;
   onChange: () => void;
 }) {
   return (
     <input
       className="px-4 py-2 border rounded m-2"
       placeholder={placeHolder}
-      type="text"
-      ref={ref}
+      type={"text"}
+      ref={reference}
     />
   );
 }
