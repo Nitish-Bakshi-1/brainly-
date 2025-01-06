@@ -7,8 +7,6 @@ interface CardProps {
 }
 
 const Card = ({ title, link, type }: CardProps) => {
-  console.log(link);
-
   return (
     <div>
       <div className="min-w-72 min-h-48 p-4 bg-white rounded-md border  border-gray-200   max-w-72">
