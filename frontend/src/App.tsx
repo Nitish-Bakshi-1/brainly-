@@ -13,7 +13,7 @@ export default function App() {
       <div className="">
         <Sidebar />
       </div>
-      <div className="p-4 ml-72">
+      <div className="p-4 ml-72 min-h-screen bg-gray-100">
         <CreateContentModal
           open={modalOpen}
           onClose={() => {
